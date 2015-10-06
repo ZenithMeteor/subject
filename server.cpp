@@ -17,14 +17,15 @@ char CRC(char *p, int len)
     crc+=*p;
     crc%=137;
     crc<<=8;
+    len--;
+    p++;
   }
   crc>>=8;
   return crc;
 }
-int Hash(long long int input)
+void Hash()
 {
-	input=input>>32;
-	return (int)input;
+	return;
 }
 short int Inc(short int input)
 {
@@ -40,14 +41,23 @@ int main()
 {
 	short int EPC_tag,SQN_tag;//tag資料 
 	int h_tag,k_tag;//tag資料 
-		
+	FILE *rdatabase=fopen("database.txt","r");
+	FILE *connect=fopen("connect.txt","r");
 		
 	int M3;// reader&server 產生的訊息 
 	int M1,M2;//tag 產生的訊息
 	int r1,r2;//亂數 
 	
+	database data[100];
+	for(int i=0;i<100;i++)
+	{
+		scanf("%d%d%d%hd%hd",&data[i].h,&data[i].Knew,&data[i].Kold,&data[i].EPC,&data[i].SQN);
+	}
+	
+	
 	//建立資料庫
 	int n;
+	
 	printf("資料數量：") ;
 	scanf("%d",&n);
 	database data[n];
